@@ -32,19 +32,18 @@ package fintech.homework01
 class Hangman(io: IODevice) {
   def play(word: String): Unit = {
     val letters = word.split("")
-    var current = new Array[String](letters.length)
-    for(n <- 0 to current.length-1) current(n) = "_"
+    val current = Array.fill(letters.length)( "_")
     var points = 0
     var badAttempt = 0
 
     while (points != letters.length && badAttempt < stages.size)
       {
-        var output = "Word: " + current.mkString("")
+        val output = "Word: " + current.mkString("")
         io.printLine(output)
         io.printLine("Guess a letter:")
-        var letter = io.readLine()
+        val letter = io.readLine()
         var flag =true
-        for(n <- 0 to current.length-1)
+        for(n <- current.indices)
           {
             if(letters(n) == letter)
               {
